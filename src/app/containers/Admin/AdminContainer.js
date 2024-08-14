@@ -142,7 +142,7 @@ export default function AdminContainer ({handleClose}) {
             const data = await uploadDestino(newDestino);
             setSpiner(false);
             console.log(data.id);
-            alert('Documento creado con éxito');
+            alert('Documento creado con éxito.');
             handleClose();
         } catch (error) {
             setSpiner(false)
