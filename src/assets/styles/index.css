@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'sierraEc'; /* Nombre que darás a tu fuente */
+  src: url('../fonts/Rajdhani-Medium.ttf');
+}
+
+body {
+  margin: 0;
+  font-family: 'sierraEc', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  min-height: 100vh;
+}
+
+code {
+  font-family: 'sierraEc', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

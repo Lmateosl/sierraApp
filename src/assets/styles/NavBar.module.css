@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'sierraEc'; /* Nombre que darás a tu fuente */
+    src: url('../fonts/Rajdhani-Medium.ttf');
+}
+
+.all {
+    background-color: white !important;
+    font-size: 14px !important;
+}
+
+.logo {
+    width: 6%;
+    margin-right: 18px;
+}
+
+@media (max-width: 1000px) {
+    .logo {
+        display: none;
+    }
+}
+
+.logo2 {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .logo2 {
+        width: 26%;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+.menuOption {
+    color: #343e47 !important;
+    font-family: 'sierraEc' !important;
+    font-size: 13px !important; 
+    font-weight: 600 !important;
+}
+
+.menuOption:hover {
+    color: #eadf21 !important;
+}
+
+.botonConImagen {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    color: #f25b6b !important;
+    font-family: 'sierraEc' !important;
+    font-size: 13px !important; 
+    font-weight: 600 !important;
+    margin-left: 20px !important;
+}
+
+.botonConImagen img {
+    margin-right: 5px;
+}
+
+.botonConImagen:hover {
+    color: #eadf21 !important;
+}
+
+@media (max-width: 1000px) {
+    .botonConImagen {
+        margin-left: 0px !important;
+    }
+}
+
+.botonMenuOption {
+    color: #343e47 !important;
+    font-family: 'sierraEc' !important;
+    font-size: 13px !important; 
+    font-weight: 600 !important;
+    margin: 2px 0px;
+    display: block; 
+    text-decoration: none; 
+    border: 2px solid #343e47 !important;
+}
+
+.botonMenuOption:hover {
+    background-color: #f25b6b !important;
+    border: 1px solid #f25b6b !important;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.sesion {
+    font-family: 'sierraEc' !important;
+    font-size: 14px !important;
+}

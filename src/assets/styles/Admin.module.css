@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'sierraEc'; /* Nombre que darás a tu fuente */
+    src: url('../fonts/Rajdhani-Medium.ttf');
+}
+
+.all {
+    width: 100%;
+    font-family: 'sierraEc' !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'sierraEc' !important;
+    font-size: 14px !important;
+}
+
+.input {
+    font-family: 'sierraEc' !important;
+    font-size: 14px !important;
+}
+
+.h1 {
+    color: #343e47;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.h3 {
+    color: #343e47;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.botonLogin {
+    width: 80%;
+    height: 40px;
+    border: 2px solid #343e47;
+    color: #f25b6b;
+    background-color: transparent;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.botonLogin:hover {
+    border: 2px solid #f25b6b;
+    background-color: #f25b6b;
+    color: white;
+}
+
+@media (max-width: 1000px) {
+    .botonLogin {
+        width: 90%;
+    }
+}
+
+.error {
+    color: #f25b6b;
+    font-size: 12px;
+    text-align: center;
+}
