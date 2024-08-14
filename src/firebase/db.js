@@ -1,4 +1,4 @@
-import { doc, getDoc, collection, addDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, addDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
 export async function getUserDocument(userId) {
@@ -20,9 +20,20 @@ export async function getUserDocument(userId) {
 
 export const uploadDestino = async (obj) => {
   try {
+    // Crear un nuevo documento en la colección "destinos"
     const docRef = await addDoc(collection(db, "destinos"), obj);
-    console.log("Document written with ID: ", docRef.id);
+    console.log("Documento añadido con ID: ", docRef.id);
+
+    // Añadir el ID del documento al propio documento
+    await updateDoc(doc(db, "destinos", docRef.id), {
+      id: docRef.id
+    });
+
+    console.log("ID del documento añadido correctamente");
+    return {id: docRef.id, msg: 'Usuario añadido con éxito.'};
+
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.error("Error añadiendo el documento: ", e);
+    return null;
   }
 };

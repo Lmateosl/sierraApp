@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Admin from "../../components/Admin";
 import imageCompression from 'browser-image-compression';
+import { uploadDestino } from "../../../firebase/db";
 
 const categoriaSierraEc = ['Aventura', 'Relax', 'Trekking', 'Turismo Cultural', 'Galápagos', 'Full Days'];
 const categoriaSierraPls = ['Thrill Expeditions', 'Cruise Trips', 'Galapagos Islands', 'Refined Relaxation', 'Luxury City Escapes'];
 
-export default function AdminContainer () {
+export default function AdminContainer ({handleClose}) {
     const [spiner, setSpiner] = useState(false);
     const [error, setError] = useState(false);
 
@@ -116,11 +117,39 @@ export default function AdminContainer () {
     }
 
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        console.log(objectMaker(title, sDesc, lDesc, url, valueSelect, valueCategoria, pdfEs, pdfEn, pdfDe, precio));
+    const [valueSelect, setValueSelect] = useState('');
+    const [categoriasList, setCategoriasList] = useState([]);
+
+    const handleSelectChange = value => {
+        if (value === 'sierraEc') {
+            setCategoriasList(categoriaSierraEc);
+        } else {
+            setCategoriasList(categoriaSierraPls);
+        }
+        setValueSelect(value);
     }
 
+
+    const [valueCategoria, setValueCategoria] = useState('');
+
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        setSpiner(true)
+        const newDestino = objectMaker(title, sDesc, lDesc, url, valueSelect, valueCategoria, pdfEs, pdfEn, pdfDe, precio);
+        if (!url) {alert('Se necesita agregar una imagen'); setSpiner(false); return;}
+        try {
+            const data = await uploadDestino(newDestino);
+            setSpiner(false);
+            console.log(data.id);
+            alert('Documento creado con éxito');
+            handleClose();
+        } catch (error) {
+            setSpiner(false)
+            setError(true);
+        }
+
+    }
 
     const objectMaker = (title, sDesc, lDesc, urlImg, seccion, categoria, pdfEs, pdfEn, pdfDe, precio) => {
         return (
@@ -141,23 +170,8 @@ export default function AdminContainer () {
         )
     }
 
-
-    const [valueSelect, setValueSelect] = useState('');
-    const [categoriasList, setCategoriasList] = useState([]);
-
-    const handleSelectChange = value => {
-        if (value === 'sierraEc') {
-            setCategoriasList(categoriaSierraEc);
-        } else {
-            setCategoriasList(categoriaSierraPls);
-        }
-        setValueSelect(value);
-    }
-
-
-    const [valueCategoria, setValueCategoria] = useState('');
-
     return(
+        <>
         <Admin 
             spiner={spiner} 
             error={error}
@@ -180,5 +194,6 @@ export default function AdminContainer () {
             handlePrecioChange={handlePrecioChange}
             cantegoriasList={categoriasList}
         />
+        </>
     )
 }
