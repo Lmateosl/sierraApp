@@ -70,7 +70,7 @@ export default function InfoDestino () {
             reference: `Reservation: ${actualDestino.title.titleEs} || ${actualDestino.sDesc.sDescEs}`,
             phoneNumber: userData.phone || null,
             email:  userData.email,
-            responseUrl: "http://localhost:3000"
+            responseUrl: process.env.REACT_APP_PAYPHONE
         };
 
         console.log(data);
