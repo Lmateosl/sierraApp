@@ -19,6 +19,7 @@ const styleInput = {
     }
 }
 
+
 export default function Admin ({
     spiner, error, url, handleUpload, 
     handleImageChange, valueSelect, handleSelectChange, 
@@ -62,7 +63,7 @@ export default function Admin ({
                         onChange={({target}) => {handleSelectChange(target.value)}}
                     >
                         <MenuItem value="sierraEc">SierraEc</MenuItem>
-                        <MenuItem value="sierra+">Sierra+</MenuItem>
+                        <MenuItem value="sierraPlus">SierraPlus</MenuItem>
                     </Select>
                 </FormControl>
                 <h3 className={styles.h3}>Categoría</h3>

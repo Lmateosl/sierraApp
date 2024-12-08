@@ -30,7 +30,7 @@ const styleAdmin = {
   overflowY: 'auto'
 };
 
-export default function MultModal({open, handleClose, component: Component, type}) {
+export default function MultModal({open, handleClose, component: Component, type, id}) {
 
   return (
     <div>
@@ -41,7 +41,7 @@ export default function MultModal({open, handleClose, component: Component, type
         aria-describedby="modal-modal-description"
       >
         <Box sx={type === 'sesion' ? styleSesion : styleAdmin}>
-          <Component handleClose={handleClose}/>
+          <Component handleClose={handleClose} id={id}/>
         </Box>
       </Modal>
     </div>

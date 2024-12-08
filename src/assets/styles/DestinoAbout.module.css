@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'sierraEc'; /* Nombre que darás a tu fuente */
+    src: url('../fonts/Rajdhani-Medium.ttf');
+}
+
+.all {
+    font-family: 'sierraEc' !important;
+}
+
+.img {
+    border-radius: 20px;
+    margin: 0 auto;
+    -webkit-box-shadow: 2px 2px 7px 2px rgba(209,209,209,1);
+    -moz-box-shadow: 2px 2px 7px 2px rgba(209,209,209,1);
+    box-shadow: 2px 2px 7px 2px rgba(209,209,209,1);
+    max-width: 570px;
+}
+
+.h3 {
+    color: #f25b6b;
+    font-size: 25px;
+    text-align: left;
+    margin: 20px 0px 10px 0px;
+}
+
+.h4 {
+    font-size: 20px;
+    text-align: left;
+    margin: 3px;
+}
+
+.iconoTitulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.item {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.p {
+    color: #f25b6b;
+    text-align: left;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.infoFolleto {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 0px;
+}
+
+.pdfContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.a {
+    color: #343e47 !important;
+}

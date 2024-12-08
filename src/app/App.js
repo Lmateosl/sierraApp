@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from './containers/NavBar/NavBar';
+import Destinos from './containers/Destinos/Destinos';
+import InfoDestino from './containers/InfoDestino/InfoDestino';
+import Footer from './components/Footer';
 import '../assets/styles/App.css';
 import Snack from './components/Snack';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const { t } = useTranslation();
@@ -35,6 +39,11 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <Routes>
+        <Route path='/' element={<Destinos />}/>
+        <Route path='/infoDestino' element={<InfoDestino />} />
+      </Routes>
+      <Footer />
       <Snack openSnack={openSnack} handleCloseSnack={handleCloseSnack} severity={severity} msg={msg} />
     </div>
   );

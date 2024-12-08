@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB3KS4Szl6FdSAbdAkdYJfda5Bhald1NWg",
-    authDomain: "sierra-fbeaa.firebaseapp.com",
-    projectId: "sierra-fbeaa",
-    storageBucket: "sierra-fbeaa.appspot.com",
-    messagingSenderId: "49847943002",
-    appId: "1:49847943002:web:9a46ef85ac37a4f4debd63",
-    measurementId: "G-P92BWJS8XL"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING,
+    appId: process.env.REACT_APP_FIREBASE_APPID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
 
 // Inicializa Firebase

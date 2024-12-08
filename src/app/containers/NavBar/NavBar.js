@@ -20,10 +20,13 @@ import MultModal from '../../components/MultModal';
 import Sesion from '../Sesion/Sesion';
 import AdminContainer from '../Admin/AdminContainer';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { getUser, logout } from '../../redux/slices/getUserSlice';
+import { langChange } from '../../redux/slices/langSlice';
 
 const pages = ['INICIO', 'NOSOTROS', 'CONTACTANOS'];
 const settings = ['cuenta', 'misViajes'];
+const url = 'https://sierraec.netlify.app/'
 
 function NavBar() {
   const { status, userData } = useSelector(state => state.user);
@@ -38,6 +41,8 @@ function NavBar() {
 
 
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const [searchParams] = useSearchParams();
+  const section = searchParams.get('section');
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -46,7 +51,25 @@ function NavBar() {
   };
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
-    console.log(page);
+    switch (page) {
+      case 'INICIO':
+        let final = '';
+        if (section === 'sierraPlus') {
+          final = 'sierra-plus-home.html';
+        } else {
+          final = 'sierraec-home';
+        }
+        window.location.href = `${url + final}`;
+        break;
+      case 'NOSOTROS':
+        window.location.href = `${url}nosotros`;
+        break;
+      case 'CONTACTANOS':
+        window.location.href = `${url}contactanos`;
+        break;
+      default:
+        break;
+    }
   };
 
 
@@ -84,6 +107,7 @@ function NavBar() {
       case 'es': 
         setLangFlag(<img src={spain} alt="Icono" width="15" height="15" style={{marginRight: 10}}/>);
         setLang('Español');
+        dispatch(langChange('es'));
         window.localStorage.setItem("lang", "es");
         i18n.changeLanguage('es');
         break;
@@ -91,6 +115,7 @@ function NavBar() {
         setLangFlag(<img src={en} alt="Icono" width="15" height="15" style={{marginRight: 10}}/>);
         setLang('English');
         window.localStorage.setItem("lang", "en");
+        dispatch(langChange('en'));
         i18n.changeLanguage('en');
         break;
       case 'de': 
@@ -98,11 +123,13 @@ function NavBar() {
         setLang('Deutsche');
         window.localStorage.setItem("lang", "de");
         i18n.changeLanguage('de');
+        dispatch(langChange('de'));
         break;
       default: 
         setLangFlag(<img src={spain} alt="Icono" width="15" height="15" style={{marginRight: 10}}/>);
         setLang('Español');
         window.localStorage.setItem("lang", "es");
+        dispatch(langChange('es'));
         i18n.changeLanguage('es');
         break;
     }

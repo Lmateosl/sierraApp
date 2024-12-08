@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Admin from "../../components/Admin";
 import imageCompression from 'browser-image-compression';
-import { uploadDestino } from "../../../firebase/db";
+import { uploadDestino, actuDestino } from "../../../firebase/db";
+import { useDispatch, useSelector } from "react-redux";
+import { getDestinoInfo } from "../../redux/slices/getInfoDestinosSlice";
 
 const categoriaSierraEc = ['Aventura', 'Relax', 'Trekking', 'Turismo Cultural', 'Galápagos', 'Full Days'];
 const categoriaSierraPls = ['Thrill Expeditions', 'Cruise Trips', 'Galapagos Islands', 'Refined Relaxation', 'Luxury City Escapes'];
+let destinoCargado;
 
-export default function AdminContainer ({handleClose}) {
+export default function AdminContainer ({handleClose, id}) {
+
+    const dispatch = useDispatch();
+    const {actualDestino} = useSelector(state => state.infoDestinos);
+
+    useEffect(() => {
+        if (id) {
+            dispatch(getDestinoInfo(id));
+        }
+    }, [dispatch, id]);
+
+    useEffect(() => {
+        if (actualDestino) {
+            destinoCargado = actualDestino;
+        }
+    }, [actualDestino]);
+
+
     const [spiner, setSpiner] = useState(false);
     const [error, setError] = useState(false);
 
@@ -44,8 +64,12 @@ export default function AdminContainer ({handleClose}) {
   
         const data = await response.json();
         setUrl(data.secure_url);
+        if (id) {
+            destinoCargado = {...destinoCargado, urlImg: data.secure_url};
+        }
       } catch (error) {
         console.error('Error uploading image:', error);
+        alert("Error al subir la imagen.");
       }
     };
 
@@ -75,13 +99,23 @@ export default function AdminContainer ({handleClose}) {
             const data = await response.json();
             if (lang === "Español") {
                 setPdfEs(data.secure_url);
+                if (id) {
+                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfEs: pdfEs}};
+                }
             } else if (lang === "Ingles") {
                 setPdfEn(data.secure_url);
+                if (id) {
+                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfEn: pdfEn}};
+                }
             } else {
                 setPdfDe(data.secure_url);
+                if (id) {
+                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfDe: pdfDe}};
+                }
             }
         } catch (error) {
             console.error("Error uploading the file", error);
+            alert("Error al subir el pdf.");
         }
     };
 
@@ -91,6 +125,9 @@ export default function AdminContainer ({handleClose}) {
     const handleTitleChange = ({target}) => {
         const {value, name} = target;
         setTitle(prevTitle => ({...prevTitle, [name]: value}))
+        if (id) {
+            destinoCargado = {...destinoCargado, title: {...destinoCargado.title, [name]: value}};
+        }
     }
 
 
@@ -98,7 +135,10 @@ export default function AdminContainer ({handleClose}) {
 
     const handleSDescChange = ({target}) => {
         const {value, name} = target;
-        setSDesc(prevTitle => ({...prevTitle, [name]: value}))
+        setSDesc(prevTitle => ({...prevTitle, [name]: value}));
+        if (id) {
+            destinoCargado = {...destinoCargado, sDesc: {...destinoCargado.sDesc, [name]: value}};
+        }
     }
 
 
@@ -106,14 +146,20 @@ export default function AdminContainer ({handleClose}) {
 
     const handleLDescChange = ({target}) => {
         const {value, name} = target;
-        setLDesc(prevTitle => ({...prevTitle, [name]: value}))
+        setLDesc(prevTitle => ({...prevTitle, [name]: value}));
+        if (id) {
+            destinoCargado = {...destinoCargado, lDesc: {...destinoCargado.lDesc, [name]: value}};
+        }
     }
 
 
     const [precio, setPrecio] = useState("");
 
     const handlePrecioChange = ({target}) => {
-        setPrecio(target.value)
+        setPrecio(target.value);
+        if (id) {
+            destinoCargado = {...destinoCargado, precio: target.value};
+        }
     }
 
 
@@ -127,6 +173,9 @@ export default function AdminContainer ({handleClose}) {
             setCategoriasList(categoriaSierraPls);
         }
         setValueSelect(value);
+        if (id) {
+            destinoCargado = {...destinoCargado, seccion: value};
+        }
     }
 
 
@@ -137,18 +186,33 @@ export default function AdminContainer ({handleClose}) {
         e.preventDefault();
         setSpiner(true)
         const newDestino = objectMaker(title, sDesc, lDesc, url, valueSelect, valueCategoria, pdfEs, pdfEn, pdfDe, precio);
-        if (!url) {alert('Se necesita agregar una imagen'); setSpiner(false); return;}
-        try {
-            const data = await uploadDestino(newDestino);
-            setSpiner(false);
-            console.log(data.id);
-            alert('Documento creado con éxito.');
-            handleClose();
-        } catch (error) {
-            setSpiner(false)
-            setError(true);
+        if (id) {
+            if (valueCategoria.length > 0) destinoCargado = {...destinoCargado, seccion: valueCategoria};
+            console.log(destinoCargado);
+            try {
+                const data = await actuDestino(destinoCargado, id);
+                setSpiner(false);
+                console.log(data.id);
+                alert('Documento actualizado con éxito.');
+                handleClose();
+            } catch (error) {
+                setSpiner(false)
+                setError(true);
+            }
+        } else {
+            if (!url) {alert('Se necesita agregar una imagen'); setSpiner(false); return;}
+            try {
+                const data = await uploadDestino(newDestino);
+                setSpiner(false);
+                console.log(data.id);
+                alert('Documento creado con éxito.');
+                handleClose();
+            } catch (error) {
+                setSpiner(false)
+                setError(true);
+            }
         }
-
+        
     }
 
     const objectMaker = (title, sDesc, lDesc, urlImg, seccion, categoria, pdfEs, pdfEn, pdfDe, precio) => {
