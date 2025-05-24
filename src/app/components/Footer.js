@@ -22,7 +22,7 @@ export default function Footer() {
                 <p style={{color: 'white', fontSize: '18px'}}>098 768 2019</p>
             </div>
         </footer>
-        <p class={styles.copyRight}><span style={{color: '#f25b6b'}}>&copy;</span>2024 Sierra Ec. All rights reserved.</p>
+        <p className={styles.copyRight}><span style={{color: '#f25b6b'}}>&copy;</span>2024 Sierra Ec. All rights reserved.</p>
         </>
     );
 }

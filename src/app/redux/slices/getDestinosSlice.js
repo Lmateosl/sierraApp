@@ -44,7 +44,23 @@ const getDestinosSlice = createSlice({
       })
       .addCase(getDestinos.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.destinos = action.payload;
+        // Ordenar destinos según las categorías especificadas
+        const prioridad = [
+          'Galápagos',
+          'Galapagos Islands',
+          'Cruise Trips'
+        ];
+        state.destinos = (action.payload || []).slice().sort((a, b) => {
+          const getIndex = (item) => {
+            if (!item.categoria) return prioridad.length;
+            const idx = prioridad.findIndex(cat => item.categoria === cat);
+            return idx === -1 ? prioridad.length : idx;
+              };
+              const idxA = getIndex(a);
+              const idxB = getIndex(b);
+              if (idxA !== idxB) return idxA - idxB;
+              return 0;
+        })
         state.requestFinish = true;
       })
       .addCase(getDestinos.rejected, (state, action) => {

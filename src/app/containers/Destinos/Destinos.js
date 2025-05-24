@@ -49,6 +49,7 @@ export default function Destinos () {
     const { t } = useTranslation();
     const [searchParams] = useSearchParams();
     const section = searchParams.get('section');
+    const categoria = searchParams.get('cat');
     const [imgsPass, setImgsPass] = useState({});
     const [categorias, setCategorias] = useState([]);
 
@@ -99,8 +100,13 @@ export default function Destinos () {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getDestinos(section));
-    }, [dispatch, section])
+        if (categoria) {
+            const tempArray = [categoria];
+            dispatch(getDestinosCat(tempArray));
+        } else {
+            dispatch(getDestinos(section));
+        }
+    }, [dispatch, section, categoria]);
 
 
     const navigate = useNavigate();
@@ -190,7 +196,7 @@ export default function Destinos () {
                     status === 'succeeded' && <CardHolder destinos={destinos} handleClickCard={handleClickCard} handleOpenModalAdmin={handleOpenModalAdmin}/>
                 }
                 <h2 style={{marginLeft: 35, color: '#f25b6b', fontSize: '25px', marginTop: 40}}>{t("destinosPopulares")}</h2>
-                <Carrusel imgs={imgsPass}/>
+                <Carrusel imgs={imgsPass} section={section}/>
             </div>
             <MultModal open={openModalAdmin} handleClose={handleCloseModalAdmin} component={AdminContainer} type='admin' id={id}/>
             <BackDrop openBack={openBack} handleCloseBack={handleCloseBack} trans={transStatus} pagado={pagado}/>
