@@ -57,7 +57,7 @@ function NavBar() {
         if (section === 'sierraPlus') {
           final = 'sierra-plus-home.html';
         } else {
-          final = 'sierraec-home';
+          final = 'index.html';
         }
         window.location.href = `${url + final}`;
         break;
