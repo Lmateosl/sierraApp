@@ -88,7 +88,7 @@ export default function PagoDestino ({actualDestino, handlePayment, handleSelect
                             </Select>
                         </FormControl>
                         <p className={styles.p2}>{t('escoge')}
-                            <a href="https://sierraec.netlify.app/nosotros" rel="noreferrer" target="_blank">{t('aqui')}</a>
+                            <a href="https://sierraec.com/nosotros" rel="noreferrer" target="_blank">{t('aqui')}</a>
                         </p>
                         <button className={styles.button} onClick={handlePayment}>Pagar</button>
                     </AccordionDetails>

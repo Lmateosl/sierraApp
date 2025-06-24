@@ -26,7 +26,7 @@ import { langChange } from '../../redux/slices/langSlice';
 
 const pages = ['INICIO', 'NOSOTROS', 'CONTACTANOS'];
 const settings = ['cuenta', 'misViajes'];
-const url = 'https://sierraec.netlify.app/'
+const url = 'https://sierraec.com/'
 
 function NavBar() {
   const { status, userData } = useSelector(state => state.user);
