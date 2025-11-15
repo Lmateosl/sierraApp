@@ -25,7 +25,7 @@ import { getUser, logout } from '../../redux/slices/getUserSlice';
 import { langChange } from '../../redux/slices/langSlice';
 
 const pages = ['INICIO', 'NOSOTROS', 'CONTACTANOS'];
-const settings = ['cuenta', 'misViajes'];
+const settings = [];
 const url = 'https://sierraec.com/'
 
 function NavBar() {
