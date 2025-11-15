@@ -8,7 +8,7 @@ import { Autoplay } from 'swiper/modules';
 export default function Carrusel ({imgs, section}) {
     const { t } = useTranslation();
     const handleClick = (url) => {
-        const inicio = 'https://appsierraec.netlify.app/infoDestino?'
+        const inicio = 'https://app.sierraec.com/infoDestino?'
         window.location.href = inicio + url;
     };
 
