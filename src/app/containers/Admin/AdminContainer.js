@@ -263,6 +263,28 @@ export default function AdminContainer ({handleClose, id}) {
         )
     }
 
+    const handleSoftDelete = async () => {
+        if (!id) return;
+        const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este destino? Esta acción lo ocultará de la web (soft delete).");
+        if (!confirmDelete) return;
+        try {
+            setSpiner(true);
+            // Usamos el destino cargado si existe, si no, actualDestino como respaldo
+            const destinoBase = destinoCargado || actualDestino || {};
+            const destinoToDelete = {
+                ...destinoBase,
+                seccion: "ninguna"
+            };
+            await actuDestino(destinoToDelete, id);
+            alert("Destino eliminado (soft delete) con éxito.");
+            handleClose();
+        } catch (error) {
+            console.error("Error realizando soft delete del destino:", error);
+            setError(true);
+            setSpiner(false);
+        }
+    }
+
     return(
         <>
         <Admin 
@@ -290,6 +312,7 @@ export default function AdminContainer ({handleClose, id}) {
             sDesc={sDesc}
             lDesc={lDesc}
             precio={precio}
+            handleSoftDelete={handleSoftDelete}
         />
         </>
     )

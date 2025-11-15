@@ -27,9 +27,10 @@ export default function Admin ({
     handleSubmit, handleSelectCategoria, valueCategoria,
     handleFileChange, handleSubmitPdf, pdfEs, pdfEn, pdfDe,
     handlePrecioChange, cantegoriasList,
-    title, sDesc, lDesc, precio
+    title, sDesc, lDesc, precio,
+    handleSoftDelete
 }) {
-  console.log("ADMIN COMPONENT PROPS:", { spiner, error, url, valueSelect, valueCategoria, title, sDesc, lDesc, precio, pdfEs, pdfEn, pdfDe });
+  console.log("ADMIN COMPONENT PROPS:", { spiner, error, url, valueSelect, valueCategoria, title, sDesc, lDesc, precio, pdfEs, pdfEn, pdfDe, handleSoftDelete });
 
     return (
         <div className={styles.all}>
@@ -183,6 +184,16 @@ export default function Admin ({
                         "Enviar"
                     }
                 </button>
+                {handleSoftDelete && (
+                    <button
+                        type="button"
+                        className={styles.botonLogin}
+                        style={{ marginTop: '10px', backgroundColor: '#b3261e' }}
+                        onClick={handleSoftDelete}
+                    >
+                        Eliminar
+                    </button>
+                )}
                 <p className={styles.error}>{error && "Error al enviar la solicitud"}</p>
             </form>
         </div>
