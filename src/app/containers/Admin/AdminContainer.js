@@ -129,17 +129,17 @@ export default function AdminContainer ({handleClose, id}) {
             if (lang === "Español") {
                 setPdfEs(data.secure_url);
                 if (id) {
-                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfEs: pdfEs}};
+                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfEs: data.secure_url}};
                 }
             } else if (lang === "Ingles") {
                 setPdfEn(data.secure_url);
                 if (id) {
-                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfEn: pdfEn}};
+                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfEn: data.secure_url}};
                 }
             } else {
                 setPdfDe(data.secure_url);
                 if (id) {
-                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfDe: pdfDe}};
+                    destinoCargado = {...destinoCargado, pdf: {...destinoCargado.pdf, pdfDe: data.secure_url}};
                 }
             }
         } catch (error) {
@@ -216,7 +216,7 @@ export default function AdminContainer ({handleClose, id}) {
         setSpiner(true)
         const newDestino = objectMaker(title, sDesc, lDesc, url, valueSelect, valueCategoria, pdfEs, pdfEn, pdfDe, precio);
         if (id) {
-            if (valueCategoria.length > 0) destinoCargado = {...destinoCargado, seccion: valueCategoria};
+            if (valueCategoria.length > 0) destinoCargado = {...destinoCargado, categoria: valueCategoria};
             console.log(destinoCargado);
             try {
                 const data = await actuDestino(destinoCargado, id);
