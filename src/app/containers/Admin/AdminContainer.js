@@ -21,10 +21,39 @@ export default function AdminContainer ({handleClose, id}) {
     }, [dispatch, id]);
 
     useEffect(() => {
-        if (actualDestino) {
+        if (id && actualDestino) {
+            // Guardamos el destino cargado para futuras modificaciones
             destinoCargado = actualDestino;
+            console.log(actualDestino);
+
+            // Rellenar estados locales con la información existente
+            setTitle(actualDestino.title || {});
+            setSDesc(actualDestino.sDesc || {});
+            setLDesc(actualDestino.lDesc || {});
+            setPrecio(actualDestino.precio || "");
+            setUrl(actualDestino.urlImg || "");
+
+            // Sección y categorías
+            const seccion = actualDestino.seccion || "";
+            setValueSelect(seccion);
+            if (seccion === "sierraEc") {
+                setCategoriasList(categoriaSierraEc);
+            } else if (seccion === "sierraPlus") {
+                setCategoriasList(categoriaSierraPls);
+            } else {
+                setCategoriasList([]);
+            }
+
+            // Categoría
+            setValueCategoria(actualDestino.categoria || "");
+
+            // PDFs
+            const pdfObj = actualDestino.pdf || {};
+            setPdfEs(pdfObj.pdfEs || "");
+            setPdfEn(pdfObj.pdfEn || "");
+            setPdfDe(pdfObj.pdfDe || "");
         }
-    }, [actualDestino]);
+    }, [id, actualDestino]);
 
 
     const [spiner, setSpiner] = useState(false);
@@ -257,6 +286,10 @@ export default function AdminContainer ({handleClose, id}) {
             handleSubmitPdf={handleSubmitPdf}
             handlePrecioChange={handlePrecioChange}
             cantegoriasList={categoriasList}
+            title={title}
+            sDesc={sDesc}
+            lDesc={lDesc}
+            precio={precio}
         />
         </>
     )

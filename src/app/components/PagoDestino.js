@@ -8,13 +8,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import elvira from '../../assets/imgs/1-Team_Elvira.webp';
 import kiki from '../../assets/imgs/5-Team_Kiki.webp';
-import guido from '../../assets/imgs/4-Team_Guido.webp';
 import otra from '../../assets/imgs/2-Team_Leslie.webp';
 
 const team = [
     {img: elvira, mail: 'info@sierraec.com', nombre: 'Ma. Elvira'},
     {img: kiki, mail: 'operaciones@sierraec.com', nombre: 'Kiki Farfán'},
-    {img: guido, mail: 'comercial@sierraec.com', nombre: 'Guido Cardoso'},
     {img: otra, mail: 'ventas1@sierraec.com', nombre: 'Leslie Orellana'}
 ]
 

@@ -26,8 +26,10 @@ export default function Admin ({
     handleTitleChange, handleSDescChange, handleLDescChange,
     handleSubmit, handleSelectCategoria, valueCategoria,
     handleFileChange, handleSubmitPdf, pdfEs, pdfEn, pdfDe,
-    handlePrecioChange, cantegoriasList
+    handlePrecioChange, cantegoriasList,
+    title, sDesc, lDesc, precio
 }) {
+  console.log("ADMIN COMPONENT PROPS:", { spiner, error, url, valueSelect, valueCategoria, title, sDesc, lDesc, precio, pdfEs, pdfEn, pdfDe });
 
     return (
         <div className={styles.all}>
@@ -40,17 +42,98 @@ export default function Admin ({
             <UploadImg pdf={pdfDe} handleUpload={handleSubmitPdf} handleImageChange={handleFileChange} texto="Alemàn"/>
             <form className={styles.form}>
                 <h3 className={styles.h3}>Titulo</h3>
-                <TextField label='Español' type='text' name="titleEs" sx={styleInput} onChange={handleTitleChange} required focused />
-                <TextField label='Ingles' type='text' name="titleEn"  sx={styleInput} onChange={handleTitleChange} required focused />
-                <TextField label='Alemàn' type='text' name="titleDe"  sx={styleInput} onChange={handleTitleChange} required focused />
+                <TextField
+                    label='Español'
+                    type='text'
+                    name="titleEs"
+                    sx={styleInput}
+                    value={title?.titleEs || ''}
+                    onChange={handleTitleChange}
+                    required
+                    focused
+                />
+                <TextField
+                    label='Ingles'
+                    type='text'
+                    name="titleEn"
+                    sx={styleInput}
+                    value={title?.titleEn || ''}
+                    onChange={handleTitleChange}
+                    required
+                    focused
+                />
+                <TextField
+                    label='Alemán'
+                    type='text'
+                    name="titleDe"
+                    sx={styleInput}
+                    value={title?.titleDe || ''}
+                    onChange={handleTitleChange}
+                    required
+                    focused
+                />
                 <h3 className={styles.h3}>Descripción Corta</h3>
-                <TextField label='Español' type='text' name="sDescEs" sx={styleInput} onChange={handleSDescChange} required focused />
-                <TextField label='Ingles' type='text' name="sDescEn" sx={styleInput} onChange={handleSDescChange} required focused />
-                <TextField label='Alemàn' type='text' name="sDescDe" sx={styleInput} onChange={handleSDescChange} required focused />
+                <TextField
+                    label='Español'
+                    type='text'
+                    name="sDescEs"
+                    sx={styleInput}
+                    value={sDesc?.sDescEs || ''}
+                    onChange={handleSDescChange}
+                    required
+                    focused
+                />
+                <TextField
+                    label='Ingles'
+                    type='text'
+                    name="sDescEn"
+                    sx={styleInput}
+                    value={sDesc?.sDescEn || ''}
+                    onChange={handleSDescChange}
+                    required
+                    focused
+                />
+                <TextField
+                    label='Alemán'
+                    type='text'
+                    name="sDescDe"
+                    sx={styleInput}
+                    value={sDesc?.sDescDe || ''}
+                    onChange={handleSDescChange}
+                    required
+                    focused
+                />
                 <h3 className={styles.h3}>Descripción Larga</h3>
-                <TextField label='Español' type='text' name="lDescEs" sx={styleInput} onChange={handleLDescChange} required focused />
-                <TextField label='Ingles' type='text' name="lDescEn" sx={styleInput} onChange={handleLDescChange} required focused />
-                <TextField label='Alemàn' type='text' name="lDescDe" sx={styleInput} onChange={handleLDescChange} required focused />
+                <TextField
+                    label='Español'
+                    type='text'
+                    name="lDescEs"
+                    sx={styleInput}
+                    value={lDesc?.lDescEs || ''}
+                    onChange={handleLDescChange}
+                    required
+                    focused
+                />
+                <TextField
+                    label='Ingles'
+                    type='text'
+                    name="lDescEn"
+                    sx={styleInput}
+                    value={lDesc?.lDescEn || ''}
+                    onChange={handleLDescChange}
+                    required
+                    focused
+                />
+                <TextField
+                    label='Alemán'
+                    type='text'
+                    name="lDescDe"
+                    sx={styleInput}
+                    value={lDesc?.lDescDe || ''}
+                    onChange={handleLDescChange}
+                    required
+                    focused
+                />
                 <h3 className={styles.h3}>Sección</h3>
                 <FormControl fullWidth sx={styleInput}>
                     <InputLabel id="select-label-seccion">Select</InputLabel>
@@ -81,7 +164,16 @@ export default function Admin ({
                     </Select>
                 </FormControl>
                 <h3 className={styles.h3}>Precio</h3>
-                <TextField label='Precio' type='text' name="precio" sx={styleInput} onChange={handlePrecioChange} required focused />
+                <TextField
+                    label='Precio'
+                    type='text'
+                    name="precio"
+                    sx={styleInput}
+                    value={precio || ''}
+                    onChange={handlePrecioChange}
+                    required
+                    focused
+                />
                 <button type="submit" className={styles.botonLogin} onClick={handleSubmit}>
                     {spiner ? 
                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems:'center'}}>
