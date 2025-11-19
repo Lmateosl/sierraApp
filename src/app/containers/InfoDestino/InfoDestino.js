@@ -36,9 +36,17 @@ export default function InfoDestino () {
         return cleaned === '' ? null : Number(cleaned);
     }
     const handleSelectChange = value => {
-        const actualValue = parseInt(value.split(':')[1].slice(2));
         setValueSelect(value);
-        const convertedValue = normalizeInteger(actualValue);
+
+        // Tomamos la parte después de los :
+        const rawPart = value.split(':')[1] || '';
+
+        // Limpieza inicial (remove comas, espacios, símbolos)
+        const cleanedPart = rawPart.trim();
+
+        // Convertir correctamente eliminando cualquier separador de miles
+        const convertedValue = normalizeInteger(cleanedPart);
+
         setPriceTour(convertedValue);
     }
 
@@ -63,6 +71,8 @@ export default function InfoDestino () {
             alert(t('priceSelect'));
             return;
         }
+
+        console.log(priceTour);
 
         if (valueSelectGuia.length < 1) {
             alert(t('guiaSelect'));
