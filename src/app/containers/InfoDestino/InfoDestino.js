@@ -30,10 +30,16 @@ export default function InfoDestino () {
     const [valueSelect, setValueSelect] = useState('');
     const [priceTour, setPriceTour] = useState(0);
 
+    function normalizeInteger(value) {
+        // Lo conviertes a string por si viene ya como número
+        const cleaned = String(value).replace(/\D/g, ''); // elimina comas, puntos, espacios, etc.
+        return cleaned === '' ? null : Number(cleaned);
+    }
     const handleSelectChange = value => {
         const actualValue = parseInt(value.split(':')[1].slice(2));
         setValueSelect(value);
-        setPriceTour(actualValue);
+        const convertedValue = normalizeInteger(actualValue);
+        setPriceTour(convertedValue);
     }
 
     const [valueSelectGuia, setValueSelectGuia] = useState('');
