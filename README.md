@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# SierraEc
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![React](https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Firebase](https://img.shields.io/badge/Firebase-BaaS-FFCA28?style=for-the-badge&logo=firebase&logoColor=000000)](https://firebase.google.com/)
+[![MUI](https://img.shields.io/badge/MUI-UI%20System-007FFF?style=for-the-badge&logo=mui&logoColor=white)](https://mui.com/)
+[![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-State%20Management-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux-toolkit.js.org/)
+[![i18next](https://img.shields.io/badge/i18next-Multilingual-26A69A?style=for-the-badge)](https://www.i18next.com/)
+[![Deploy](https://img.shields.io/badge/Production-Live-0A7B83?style=for-the-badge)](https://sierraec.com)
 
-## Available Scripts
+Frontend de una plataforma de reservas turísticas orientada a operación real de negocio. La aplicación permite explorar destinos, consultar detalle de paquetes, autenticarse, iniciar flujos de reserva y conectar el proceso con pagos online.
 
-In the project directory, you can run:
+**Live:** [sierraec.com](https://sierraec.com)
 
-### `npm start`
+## Resumen Ejecutivo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+SierraEc es un proyecto construido con una mentalidad de producto: experiencia de usuario clara, integración con servicios externos y una arquitectura suficiente para soportar catálogo, autenticación, administración de contenido y flujos de compra.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Desde el lado frontend, el foco está en:
 
-### `npm test`
+- construir una SPA mantenible sobre React
+- consumir un backend ligero basado en servicios
+- centralizar autenticación y persistencia con Firebase como Backend as a Service
+- soportar operación comercial real con catálogo, reservas y pagos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Enfoque Técnico
 
-### `npm run build`
+Este proyecto adopta una arquitectura frontend desacoplada, donde la UI consume servicios externos y delega capacidades transversales a plataformas especializadas:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Firebase como BaaS** para autenticación y persistencia en Firestore
+- **PayPhone** para el flujo de pagos
+- **Cloudinary** para manejo de assets multimedia
+- **EmailJS** para automatizaciones de contacto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Este enfoque reduce complejidad de backend custom, acelera entrega de producto y facilita iteración sobre funcionalidades de negocio.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Funcionalidades Principales
 
-### `npm run eject`
+- exploración y navegación de destinos turísticos
+- detalle de paquetes con información comercial y visual
+- autenticación con email/password, Google y Facebook
+- persistencia de usuarios, destinos y pagos sobre Firestore
+- flujo de reserva conectado con pasarela de pago
+- panel administrativo para alta y actualización de destinos
+- soporte multilenguaje con `i18next`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Core
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `React 18`
+- `JavaScript`
+- `React Router DOM`
+- `Redux Toolkit`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### UI y experiencia
 
-## Learn More
+- `Material UI`
+- `Emotion`
+- `Swiper`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Servicios y plataforma
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `Firebase Auth`
+- `Cloud Firestore`
+- `Cloudinary`
+- `PayPhone API`
+- `EmailJS`
 
-### Code Splitting
+### Internacionalización
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `i18next`
+- `react-i18next`
+- `i18next-browser-languagedetector`
 
-### Analyzing the Bundle Size
+## Arquitectura
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+La aplicación está organizada por capas funcionales para separar presentación, lógica de negocio y acceso a datos:
 
-### Making a Progressive Web App
+```text
+src/
+├── app/
+│   ├── components/     # Componentes reutilizables de UI
+│   ├── containers/     # Vistas y flujos de negocio
+│   ├── features/       # Integraciones y helpers de dominio
+│   └── redux/          # Estado global y slices
+├── assets/             # Fuentes, imágenes y estilos
+└── firebase/           # Configuración, auth y acceso a Firestore
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Firebase como Backend as a Service
 
-### Advanced Configuration
+Firebase se utiliza como capa de backend administrado para cubrir necesidades clave del producto sin levantar un servidor tradicional para cada flujo:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Authentication** para registro, login social y recuperación de contraseña
+- **Cloud Firestore** para usuarios, destinos y registros asociados al proceso de reserva
+- configuración basada en variables de entorno para aislar credenciales por ambiente
 
-### Deployment
+Esto permite concentrar el esfuerzo de desarrollo en experiencia, conversión y administración de contenido, manteniendo una base técnica simple de operar.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Casos de Uso Cubiertos
 
-### `npm run build` fails to minify
+### Usuario final
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- descubrir paquetes turísticos
+- revisar información detallada de un destino
+- autenticarse con distintos proveedores
+- avanzar en el flujo de compra y pago
+
+### Operación interna
+
+- crear nuevos destinos
+- actualizar contenido de paquetes existentes
+- administrar información comercial desde interfaz web
+
+## Variables de Entorno
+
+El proyecto utiliza variables `REACT_APP_*` para la configuración de servicios externos, incluyendo:
+
+- Firebase
+- PayPhone
+- otras integraciones conectadas al frontend
+
+Ejemplo de setup local:
+
+```bash
+cp .env .env.local
+npm install
+npm start
+```
+
+## Scripts
+
+```bash
+npm start
+npm test
+npm run build
+```
+
+## Valor de Portfolio
+
+Este proyecto muestra experiencia práctica en:
+
+- construcción de productos frontend conectados a negocio real
+- integración de múltiples servicios third-party
+- diseño de flujos de autenticación y reserva
+- uso de BaaS para acelerar delivery sin sacrificar escalabilidad inicial
+- organización de una base de código React mantenible para evolución de producto
+
+## Autor
+
+**Luis Mateo Sanchez Loaiza**
+
+Senior Frontend Engineer  
+React | Angular | Full-Stack | AI Systems
