@@ -7,43 +7,43 @@
 [![i18next](https://img.shields.io/badge/i18next-Multilingual-26A69A?style=for-the-badge)](https://www.i18next.com/)
 [![Deploy](https://img.shields.io/badge/Production-Live-0A7B83?style=for-the-badge)](https://sierraec.com)
 
-Frontend de una plataforma de reservas turísticas orientada a operación real de negocio. La aplicación permite explorar destinos, consultar detalle de paquetes, autenticarse, iniciar flujos de reserva y conectar el proceso con pagos online.
+Frontend for a travel booking platform built to support real business operations. The application enables users to explore destinations, review package details, authenticate, start booking flows, and complete online payments.
 
 **Live:** [sierraec.com](https://sierraec.com)
 
-## Resumen Ejecutivo
+## Executive Summary
 
-SierraEc es un proyecto construido con una mentalidad de producto: experiencia de usuario clara, integración con servicios externos y una arquitectura suficiente para soportar catálogo, autenticación, administración de contenido y flujos de compra.
+SierraEc is a product-driven frontend application designed around usability, third-party service integration, and a structure that can support catalog management, authentication, content administration, and booking workflows.
 
-Desde el lado frontend, el foco está en:
+From a frontend engineering perspective, the project focuses on:
 
-- construir una SPA mantenible sobre React
-- consumir un backend ligero basado en servicios
-- centralizar autenticación y persistencia con Firebase como Backend as a Service
-- soportar operación comercial real con catálogo, reservas y pagos
+- building a maintainable React SPA
+- integrating a lightweight service-based backend approach
+- centralizing authentication and persistence with Firebase as a Backend as a Service
+- supporting real commercial flows for catalog, booking, and payment
 
-## Enfoque Técnico
+## Technical Approach
 
-Este proyecto adopta una arquitectura frontend desacoplada, donde la UI consume servicios externos y delega capacidades transversales a plataformas especializadas:
+This project follows a decoupled frontend architecture where the UI consumes external services and delegates cross-cutting backend capabilities to specialized platforms:
 
-- **Firebase como BaaS** para autenticación y persistencia en Firestore
-- **PayPhone** para el flujo de pagos
-- **Cloudinary** para manejo de assets multimedia
-- **EmailJS** para automatizaciones de contacto
+- **Firebase as BaaS** for authentication and Firestore persistence
+- **PayPhone** for payment processing
+- **Cloudinary** for media asset handling
+- **EmailJS** for contact-related automation
 
-Este enfoque reduce complejidad de backend custom, acelera entrega de producto y facilita iteración sobre funcionalidades de negocio.
+This approach reduces custom backend complexity, speeds up delivery, and keeps the team focused on product features and user experience.
 
-## Funcionalidades Principales
+## Core Features
 
-- exploración y navegación de destinos turísticos
-- detalle de paquetes con información comercial y visual
-- autenticación con email/password, Google y Facebook
-- persistencia de usuarios, destinos y pagos sobre Firestore
-- flujo de reserva conectado con pasarela de pago
-- panel administrativo para alta y actualización de destinos
-- soporte multilenguaje con `i18next`
+- destination discovery and browsing flows
+- detailed package views with commercial and visual information
+- authentication via email/password, Google, and Facebook
+- Firestore-based persistence for users, destinations, and payment-related records
+- booking flow connected to an online payment gateway
+- admin panel for creating and updating destination content
+- multilingual support with `i18next`
 
-## Stack
+## Tech Stack
 
 ### Core
 
@@ -52,13 +52,13 @@ Este enfoque reduce complejidad de backend custom, acelera entrega de producto y
 - `React Router DOM`
 - `Redux Toolkit`
 
-### UI y experiencia
+### UI and Experience
 
 - `Material UI`
 - `Emotion`
 - `Swiper`
 
-### Servicios y plataforma
+### Services and Platform
 
 - `Firebase Auth`
 - `Cloud Firestore`
@@ -66,61 +66,61 @@ Este enfoque reduce complejidad de backend custom, acelera entrega de producto y
 - `PayPhone API`
 - `EmailJS`
 
-### Internacionalización
+### Internationalization
 
 - `i18next`
 - `react-i18next`
 - `i18next-browser-languagedetector`
 
-## Arquitectura
+## Architecture
 
-La aplicación está organizada por capas funcionales para separar presentación, lógica de negocio y acceso a datos:
+The codebase is organized in functional layers to separate presentation, business logic, and data access concerns:
 
 ```text
 src/
 ├── app/
-│   ├── components/     # Componentes reutilizables de UI
-│   ├── containers/     # Vistas y flujos de negocio
-│   ├── features/       # Integraciones y helpers de dominio
-│   └── redux/          # Estado global y slices
-├── assets/             # Fuentes, imágenes y estilos
-└── firebase/           # Configuración, auth y acceso a Firestore
+│   ├── components/     # Reusable UI building blocks
+│   ├── containers/     # Screens and feature flows
+│   ├── features/       # Domain integrations and helpers
+│   └── redux/          # Global state and slices
+├── assets/             # Fonts, images, and styles
+└── firebase/           # Firebase setup, auth, and Firestore access
 ```
 
-## Firebase como Backend as a Service
+## Firebase as Backend as a Service
 
-Firebase se utiliza como capa de backend administrado para cubrir necesidades clave del producto sin levantar un servidor tradicional para cada flujo:
+Firebase is used as the managed backend layer to cover key product requirements without building a traditional custom backend for every workflow:
 
-- **Authentication** para registro, login social y recuperación de contraseña
-- **Cloud Firestore** para usuarios, destinos y registros asociados al proceso de reserva
-- configuración basada en variables de entorno para aislar credenciales por ambiente
+- **Authentication** for sign-up, social login, and password recovery
+- **Cloud Firestore** for users, destinations, and reservation-related records
+- environment-based configuration through `REACT_APP_*` variables
 
-Esto permite concentrar el esfuerzo de desarrollo en experiencia, conversión y administración de contenido, manteniendo una base técnica simple de operar.
+This setup keeps operational complexity low while allowing the product to move faster and iterate on business features more efficiently.
 
-## Casos de Uso Cubiertos
+## Covered Use Cases
 
-### Usuario final
+### End User
 
-- descubrir paquetes turísticos
-- revisar información detallada de un destino
-- autenticarse con distintos proveedores
-- avanzar en el flujo de compra y pago
+- browse travel packages
+- review destination details
+- authenticate with multiple providers
+- move through the booking and payment flow
 
-### Operación interna
+### Internal Operations
 
-- crear nuevos destinos
-- actualizar contenido de paquetes existentes
-- administrar información comercial desde interfaz web
+- create new destinations
+- update existing package content
+- manage commercial information from a web interface
 
-## Variables de Entorno
+## Environment Variables
 
-El proyecto utiliza variables `REACT_APP_*` para la configuración de servicios externos, incluyendo:
+The project relies on `REACT_APP_*` variables for configuring external services, including:
 
 - Firebase
 - PayPhone
-- otras integraciones conectadas al frontend
+- other frontend-connected integrations
 
-Ejemplo de setup local:
+Example local setup:
 
 ```bash
 cp .env .env.local
@@ -128,7 +128,7 @@ npm install
 npm start
 ```
 
-## Scripts
+## Available Scripts
 
 ```bash
 npm start
@@ -136,17 +136,17 @@ npm test
 npm run build
 ```
 
-## Valor de Portfolio
+## Portfolio Value
 
-Este proyecto muestra experiencia práctica en:
+This project highlights practical experience in:
 
-- construcción de productos frontend conectados a negocio real
-- integración de múltiples servicios third-party
-- diseño de flujos de autenticación y reserva
-- uso de BaaS para acelerar delivery sin sacrificar escalabilidad inicial
-- organización de una base de código React mantenible para evolución de producto
+- building frontend products connected to real business operations
+- integrating multiple third-party services into a cohesive user flow
+- designing authentication and booking experiences
+- using BaaS to accelerate delivery without overengineering
+- structuring a React codebase that can evolve with product needs
 
-## Autor
+## Author
 
 **Luis Mateo Sanchez Loaiza**
 
