@@ -60,10 +60,12 @@
     "pagoInicial3": " por persona. Consulta el folleto para obtener toda la información del viaje, selecciona el número de personas que participarán y elige a tu asesor de compra, quien te guiará en todo el proceso. ¡Siente la alegría de la vida, comienza un nuevo viaje con nosotros!",
     "selectTarifa": "Tarifa",
     "guia": "Asesor",
+    "passengerCount": "Numero de pasajeros",
     "escoge": "¿No sabes a quién escoger? Conoce a nuestros asesores ",
     "aqui": "aquí.",
     "priceSelect": "Selecciona la tarifa del tour.",
     "guiaSelect": "Seleciona un asesor por favor.",
+    "passengerSelect": "Selecciona el numero de pasajeros.",
     "pagoExitoso": "¡Tu pago ha sido completado con éxito y tu aventura está oficialmente reservada! Toda la información de tu compra ha sido enviada a tu correo electrónico. El asesor que elegiste se pondrá en contacto contigo muy pronto para asegurarse de que todo esté listo para tu increíble experiencia. ¡Prepárate para vivir un viaje inolvidable!",
     "finalizar": "Finalizar"
 }

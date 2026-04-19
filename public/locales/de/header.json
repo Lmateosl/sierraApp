@@ -59,10 +59,12 @@
     "pagoInicial3": " pro Person. Sehen Sie sich die Broschüre an, um alle Informationen über die Reise zu erhalten, wählen Sie die Anzahl der teilnehmenden Personen aus und wählen Sie Ihren Verkaufsberater, der Sie nach Abschluss des Kaufs kontaktieren wird. Spüren Sie die Freude am Leben, beginnen Sie eine neue Reise mit uns!",
     "selectTarifa": "Tarif",
     "guia": "Berater",
+    "passengerCount": "Anzahl der Passagiere",
     "escoge": "Weißt du nicht, wen du wählen sollst? Lerne hier unsere Berater ",
     "aqui": "kennen",
     "priceSelect": "Wähle den Tourtarif aus.",
     "guiaSelect": "Bitte wählen Sie einen Berater aus.",
+    "passengerSelect": "Bitte wählen Sie die Anzahl der Passagiere aus.",
     "pagoExitoso": "Ihre Zahlung wurde erfolgreich abgeschlossen und Ihre Buchung ist bestätigt. Die Informationen zu Ihrem Kauf wurden an Ihre E-Mail-Adresse gesendet. Der von Ihnen ausgewählte Berater wird sich in Kürze mit Ihnen in Verbindung setzen, um die Details abzustimmen.",
     "finalizar": "Abschließen"
   }

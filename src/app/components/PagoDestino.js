@@ -17,7 +17,16 @@ const team = [
 ]
 
 
-export default function PagoDestino ({actualDestino, handlePayment, handleSelectChange, valueSelect, valueSelectGuia, handleSelectGuiaChange}) {
+export default function PagoDestino ({
+    actualDestino,
+    handlePayment,
+    handleSelectChange,
+    valueSelect,
+    valueSelectGuia,
+    handleSelectGuiaChange,
+    passengerCount,
+    handlePassengerCountChange
+}) {
     const { t } = useTranslation();
     const styleInput = {
         marginBottom: 3,
@@ -83,6 +92,23 @@ export default function PagoDestino ({actualDestino, handlePayment, handleSelect
                                         {item.nombre}
                                     </MenuItem>
                                 )}
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth sx={styleInput}>
+                            <InputLabel id="select-label-seccion4">{t('passengerCount')}</InputLabel>
+                            <Select
+                                labelId="select-label-seccion4"
+                                id="select-seccion4"
+                                value={passengerCount}
+                                label={t('passengerCount')}
+                                className={styles.input}
+                                onChange={({target}) => {handlePassengerCountChange(target.value)}}
+                            >
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                                    <MenuItem key={item} value={String(item)}>
+                                        {item}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
                         <p className={styles.p2}>{t('escoge')}

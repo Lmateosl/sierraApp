@@ -56,6 +56,12 @@ export default function InfoDestino () {
         setValueSelectGuia(value);
         console.log(value);
     }
+
+    const [passengerCount, setPassengerCount] = useState('');
+
+    const handlePassengerCountChange = value => {
+        setPassengerCount(value);
+    }
     
 
     const uniqueId = uuidv4();
@@ -79,9 +85,17 @@ export default function InfoDestino () {
             return;
         }
 
+        if (passengerCount.length < 1) {
+            alert(t('passengerSelect'));
+            return;
+        }
+
+        const passengers = Number(passengerCount);
+        const reservationAmount = priceTour > 200 ? 10000 : priceTour * passengers * 100;
+
         const data ={
-            amount: priceTour > 200 ? 10000 : priceTour * 100,
-            amountWithoutTax: priceTour > 200 ? 10000 : priceTour * 100,
+            amount: reservationAmount,
+            amountWithoutTax: reservationAmount,
             clientTransactionId: uniqueId,
             reference: `Reservation: ${actualDestino.title.titleEs} || ${actualDestino.sDesc.sDescEs}`,
             phoneNumber: userData.phone || null,
@@ -93,7 +107,14 @@ export default function InfoDestino () {
         try {
             const response = await preparePayment(data);
             console.log(response.payWithCard);
-            window.localStorage.setItem('pagoInfo', JSON.stringify({userInfo: userData, tarifa: valueSelect, asesor: valueSelectGuia, destinoId: id, destinoInfo: actualDestino}));
+            window.localStorage.setItem('pagoInfo', JSON.stringify({
+                userInfo: userData,
+                tarifa: valueSelect,
+                asesor: valueSelectGuia,
+                pajNum: passengerCount,
+                destinoId: id,
+                destinoInfo: actualDestino
+            }));
             window.location.href = response.payWithCard;
         } catch (error) {
             alert('Error en la llamada: ' + error.message);
@@ -127,6 +148,8 @@ export default function InfoDestino () {
                                 valueSelect={valueSelect}
                                 valueSelectGuia={valueSelectGuia}
                                 handleSelectGuiaChange={handleSelectChangeGuia}
+                                passengerCount={passengerCount}
+                                handlePassengerCountChange={handlePassengerCountChange}
                             />
                         </Grid>
                     </>

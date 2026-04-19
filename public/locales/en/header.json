@@ -59,10 +59,12 @@
     "pagoInicial3": " per person. Check the brochure for all the information about the trip, select the number of people who will participate, and choose your sales advisor, who will contact you once the purchase is complete. Feel the joy of life, start a new journey with us!",
     "selectTarifa": "Rate",
     "guia": "Advisor",
+    "passengerCount": "Number of passengers",
     "escoge": "Not sure who to choose? Meet our advisors ",
     "aqui": "here.",
     "priceSelect": "Select the tour rate.",
     "guiaSelect": "Please select an advisor.",
+    "passengerSelect": "Please select the number of passengers.",
     "pagoExitoso": "Your payment has been successfully processed and your booking is confirmed. The details of your purchase have been sent to your email. The advisor you selected will contact you shortly to coordinate the details.",
     "finalizar": "Finish"
 }
